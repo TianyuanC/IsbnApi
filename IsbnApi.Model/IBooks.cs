@@ -16,6 +16,6 @@ namespace IsbnApi.Model
         /// </summary>
         /// <param name="key">The key.</param>
         /// <returns>Book.</returns>
-        Book Get(int key);
+        Task<Book> GetAsync(int key);
     }
 }

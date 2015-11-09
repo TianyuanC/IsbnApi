@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using IsbnApi.Model;
 using IsbnApi.Logic;
+using System.Threading.Tasks;
 
 namespace IsbnApi.Controllers.api
 {
@@ -42,9 +43,9 @@ namespace IsbnApi.Controllers.api
         /// <param name="id">The identifier.</param>
         /// <returns>HttpResponseMessage.</returns>
         [HttpGet]
-        public HttpResponseMessage Get(int id)
+        public async Task<HttpResponseMessage> Get(int id)
         {
-            Book book = books.Get(id);
+            Book book = await books.GetAsync(id);
             return Request.CreateResponse(HttpStatusCode.OK, book);
         }
     }

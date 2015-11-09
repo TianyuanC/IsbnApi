@@ -39,9 +39,9 @@ namespace IsbnApi.Logic
         /// </summary>
         /// <param name="key">The key.</param>
         /// <returns>Book.</returns>
-        public Book Get(int key)
+        public async Task<Book> GetAsync(int key)
         {
-            return googleClient.LookUp(key);
+            return await googleClient.LookUpAsync(key);
         }
     }
 }
