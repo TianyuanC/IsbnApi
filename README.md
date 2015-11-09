@@ -2,7 +2,7 @@
 API Client to lookup books using Google Book API
 
 ##Request
-/api/book/9780199291151
+[/api/book/9780199291151](http://isbnapi.azurewebsites.net/api/book/9780199291151)
 
 ##Response
 ```javascript
