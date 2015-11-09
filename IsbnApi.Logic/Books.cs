@@ -20,9 +20,8 @@ namespace IsbnApi.Logic
         /// <summary>
         /// Initializes a new instance of the <see cref="Books"/> class.
         /// </summary>
-        public Books()
+        public Books():this(new GoogleApiClient())
         {
-            this.googleClient = new GoogleApiClient();
         }
 
         /// <summary>
@@ -39,7 +38,7 @@ namespace IsbnApi.Logic
         /// </summary>
         /// <param name="key">The key.</param>
         /// <returns>Book.</returns>
-        public async Task<Book> GetAsync(int key)
+        public async Task<Book> GetAsync(string key)
         {
             return await googleClient.LookUpAsync(key);
         }

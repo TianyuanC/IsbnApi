@@ -6,6 +6,8 @@ using IsbnApi.Model;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Diagnostics;
+using IsbnApi.Logic.Conversion;
 
 namespace IsbnApi.Logic
 {
@@ -29,9 +31,8 @@ namespace IsbnApi.Logic
         /// <summary>
         /// Initializes a new instance of the <see cref="GoogleApiClient"/> class.
         /// </summary>
-        public GoogleApiClient()
+        public GoogleApiClient():this(new RestClient())
         {
-            this.restClient = new RestClient();
         }
 
         /// <summary>
@@ -49,7 +50,7 @@ namespace IsbnApi.Logic
         /// <param name="key">The key.</param>
         /// <returns>Book.</returns>
         /// <exception cref="System.NotImplementedException"></exception>
-        public async Task<Book> LookUpAsync(int key)
+        public async Task<Book> LookUpAsync(string key)
         {
             var config = new HttpConfiguration(new Uri(BaseUrl), string.Format("volumes?q=isbn:{0}", key), HttpRequest.Get);
             return await restClient.GetAsync(config, LoadBook);
@@ -62,7 +63,9 @@ namespace IsbnApi.Logic
         /// <returns>Book.</returns>
         private static Book LoadBook(HttpResponseMessage msg)
         {
-            return new Book();
+            Task<GoogleBook> readTask = msg.Content.ReadAsAsync<GoogleBook>();
+            readTask.Wait();
+            return readTask.Result.ToBook();
         }
     }
 }

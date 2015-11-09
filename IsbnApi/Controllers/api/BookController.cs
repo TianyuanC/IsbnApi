@@ -23,9 +23,8 @@ namespace IsbnApi.Controllers.api
         /// <summary>
         /// Initializes a new instance of the <see cref="BookController"/> class.
         /// </summary>
-        public BookController() 
+        public BookController() : this(new Books())
         {
-            this.books = new Books();
         }
 
         /// <summary>
@@ -43,8 +42,9 @@ namespace IsbnApi.Controllers.api
         /// <param name="id">The identifier.</param>
         /// <returns>HttpResponseMessage.</returns>
         [HttpGet]
-        public async Task<HttpResponseMessage> Get(int id)
+        public async Task<HttpResponseMessage> Get(string id)
         {
+            
             Book book = await books.GetAsync(id);
             return Request.CreateResponse(HttpStatusCode.OK, book);
         }
