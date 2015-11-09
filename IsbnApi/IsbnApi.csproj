@@ -197,6 +197,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\api\BookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -275,6 +276,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IsbnApi.Logic\IsbnApi.Logic.csproj">
+      <Project>{a5e9e318-f653-4b74-b566-77bcb2049c63}</Project>
+      <Name>IsbnApi.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IsbnApi.Model\IsbnApi.Model.csproj">
+      <Project>{2d514651-38b8-45d2-886d-0379b6c55978}</Project>
+      <Name>IsbnApi.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
